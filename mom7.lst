@@ -1,0 +1,69 @@
+
+mom7.elf:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+20000000 <start>:
+@
+@	mom5.asm
+@
+
+start:	LDR	R6,=0x55555555
+20000000:	4e08      	ldr	r6, [pc, #32]	; (20000024 <main+0x16>)
+	LDR	R5,=0x40020C00
+20000002:	4d09      	ldr	r5, [pc, #36]	; (20000028 <main+0x1a>)
+	STR	R6,[R5]
+20000004:	602e      	str	r6, [r5, #0]
+	LDR	R5,=0x40021000
+20000006:	4d09      	ldr	r5, [pc, #36]	; (2000002c <main+0x1e>)
+	STR	R6,[R5]
+20000008:	602e      	str	r6, [r5, #0]
+
+	LDR	R5,=0x40020C14
+2000000a:	4d09      	ldr	r5, [pc, #36]	; (20000030 <main+0x22>)
+	LDR	R6,=0x40021014
+2000000c:	4e09      	ldr	r6, [pc, #36]	; (20000034 <main+0x26>)
+
+2000000e <main>:
+
+@R0=R0 << R1
+@Skriv registervärden före skrift till Bargraph
+main:	LDR	R0,=0xEF813489
+2000000e:	480a      	ldr	r0, [pc, #40]	; (20000038 <main+0x2a>)
+	LDR	R1,=2
+20000010:	490a      	ldr	r1, [pc, #40]	; (2000003c <main+0x2e>)
+	LSR	R2,R0,#16
+20000012:	0c02      	lsrs	r2, r0, #16
+	STRH	R2,[R5]
+20000014:	802a      	strh	r2, [r5, #0]
+	STRH	R0,[R6]
+20000016:	8030      	strh	r0, [r6, #0]
+@ Utför skift
+	LSL	R0,R1
+20000018:	4088      	lsls	r0, r1
+@ Skriv registervärden efter skift till Bargraph
+	LSR	R2,R0,#16
+2000001a:	0c02      	lsrs	r2, r0, #16
+	STRH	R2,[R5]
+2000001c:	802a      	strh	r2, [r5, #0]
+	STRH	R0,[R6]
+2000001e:	8030      	strh	r0, [r6, #0]
+20000020:	e7f5      	b.n	2000000e <main>
+20000022:	0000      	.short	0x0000
+20000024:	55555555 	.word	0x55555555
+20000028:	40020c00 	.word	0x40020c00
+2000002c:	40021000 	.word	0x40021000
+20000030:	40020c14 	.word	0x40020c14
+20000034:	40021014 	.word	0x40021014
+20000038:	ef813489 	.word	0xef813489
+2000003c:	00000002 	.word	0x00000002
+
+20000040 <__bss_end__>:
+	...
+
+20001000 <heap_low>:
+	...
+
+20001800 <heap_top>:
+	...
