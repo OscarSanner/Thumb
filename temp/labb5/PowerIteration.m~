@@ -1,0 +1,3 @@
+function bk = PowerIteration(A, p)
+    
+end
